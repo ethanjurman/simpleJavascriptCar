@@ -68,8 +68,8 @@ function onEF (e)
 {    
     if (up){car.rotation = rot.up;}
     else if (down){car.rotation = rot.down;}
-    if (right){car.rotation = rot.right - up*rot.r/2 + down*rot.r/2;} 
-    else if (left){car.rotation = rot.left - up*rot.l/2 + down*rot.l/2;}
+    if (right){car.rotation = rot.right - up*rot.right/2 + down*rot.right/2;} 
+    else if (left){car.rotation = rot.left - up*rot.left/2 + down*rot.left/2;}
     if (up || down || left || right){
         car.x += speed*Math.cos((car.rotation/180-0.5)*Math.PI);
         car.y += speed*Math.sin((car.rotation/180-0.5)*Math.PI);
