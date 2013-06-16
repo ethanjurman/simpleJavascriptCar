@@ -15,31 +15,31 @@ function Start()
     
     // load image details
     /* you must do this for every image if you want to know thier
-	height and width before they are posted on the page */
-	var imgCar = new Image();
-	imgCar.src = "./car.png";
-	document.body.appendChild(imgCar); // loads the img
-	document.body.removeChild(imgCar); // keeps the img, but removes it from the document
+    height and width before they are posted on the page */
+    var imgCar = new Image();
+    imgCar.src = "./car.png";
+    document.body.appendChild(imgCar); // loads the img
+    document.body.removeChild(imgCar); // keeps the img, but removes it from the document
 
-    // car			
+    // car            
     car = new Sprite(); 
     car.x = stage.stageWidth/2; // place car in the middle of the page
     car.y = stage.stageHeight/2; // place car in the middle of the page
-    	// rotation for rotating the car (seen in onEF)
+        // rotation for rotating the car (seen in onEF)
     rot = {
-		up : 0,
-		down : 180,
-		right : 90,
-		left : -90,
-	}
+        up : 0,
+        down : 180,
+        right : 90,
+        left : -90,
+    }
 
-	// working with the car bitmap
+    // working with the car bitmap
     cb = new Bitmap(new BitmapData("./car.png"));
     car.addChild(cb);
     stage.addChild(car);
 
     //center the car (for rotational purposes)
-	cb.x = -imgCar.width/2;
+    cb.x = -imgCar.width/2;
     cb.y = -imgCar.height/2;
 
     // events
@@ -65,13 +65,13 @@ function onKU (e)
 }
 
 function onEF (e)
-{	
+{    
     if (up){car.rotation = rot.up;}
     else if (down){car.rotation = rot.down;}
     if (right){car.rotation = rot.right - up*rot.r/2 + down*rot.r/2;} 
     else if (left){car.rotation = rot.left - up*rot.l/2 + down*rot.l/2;}
     if (up || down || left || right){
-		car.x += speed*Math.cos((car.rotation/180-0.5)*Math.PI);
-		car.y += speed*Math.sin((car.rotation/180-0.5)*Math.PI);
-	}
+        car.x += speed*Math.cos((car.rotation/180-0.5)*Math.PI);
+        car.y += speed*Math.sin((car.rotation/180-0.5)*Math.PI);
+    }
 }
