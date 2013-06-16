@@ -1,5 +1,5 @@
 var stage, car, angle = 0, speed = 5;
-var l = false, r = false, u = false, d = false;
+var left = false, right = false, up = false, down = false;
 var tf;
 var fps = 60;
 var time = new Date().getTime();
@@ -17,7 +17,7 @@ function Start()
     /* you must do this for every image if you want to know thier
 	height and width before they are posted on the page */
 	var imgCar = new Image();
-	imgCar.src = "http://i.imgur.com/xs5f0A6.png";
+	imgCar.src = "./car.png";
 	document.body.appendChild(imgCar); // loads the img
 	document.body.removeChild(imgCar); // keeps the img, but removes it from the document
 
@@ -27,14 +27,14 @@ function Start()
     car.y = stage.stageHeight/2; // place car in the middle of the page
     	// rotation for rotating the car (seen in onEF)
     rot = {
-		u : 0,
-		d : 180,
-		r : 90,
-		l : -90,
+		up : 0,
+		down : 180,
+		right : 90,
+		left : -90,
 	}
 
 	// working with the car bitmap
-    cb = new Bitmap(new BitmapData("http://i.imgur.com/xs5f0A6.png"));
+    cb = new Bitmap(new BitmapData("./car.png"));
     car.addChild(cb);
     stage.addChild(car);
 
@@ -50,31 +50,27 @@ function Start()
 
 function onKD (e)
 {
-    if(e.keyCode == 37) l = true;
-    if(e.keyCode == 38) u = true;
-    if(e.keyCode == 39) r = true;
-    if(e.keyCode == 40) d = true;
+    if(e.keyCode == 37) left = true;
+    if(e.keyCode == 38) up = true;
+    if(e.keyCode == 39) right = true;
+    if(e.keyCode == 40) down = true;
 }
 
 function onKU (e)
 {
-    if(e.keyCode == 37) l = false;
-    if(e.keyCode == 38) u = false;
-    if(e.keyCode == 39) r = false;
-    if(e.keyCode == 40) d = false;
+    if(e.keyCode == 37) left = false;
+    if(e.keyCode == 38) up = false;
+    if(e.keyCode == 39) right = false;
+    if(e.keyCode == 40) down = false;
 }
 
 function onEF (e)
-{
-	// rotation stuff
-//	carWidth = cb.bitmapData.width;
-//	carHeight = cb.bitmapData.height;
-	
-    if (u){car.rotation = rot.u;}
-    else if (d){car.rotation = rot.d;}
-    if (r){car.rotation = rot.r - u*rot.r/2 + d*rot.r/2;} 
-    else if (l){car.rotation = rot.l - u*rot.l/2 + d*rot.l/2;}
-    if (u || d || l || r){
+{	
+    if (up){car.rotation = rot.up;}
+    else if (down){car.rotation = rot.down;}
+    if (right){car.rotation = rot.right - up*rot.r/2 + down*rot.r/2;} 
+    else if (left){car.rotation = rot.left - up*rot.l/2 + down*rot.l/2;}
+    if (up || down || left || right){
 		car.x += speed*Math.cos((car.rotation/180-0.5)*Math.PI);
 		car.y += speed*Math.sin((car.rotation/180-0.5)*Math.PI);
 	}
