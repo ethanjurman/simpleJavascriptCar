@@ -1,17 +1,9 @@
-var stage, car, angle = 0, speed = 5;
+var stage, car, angle = 0, speed = 5, rot;
 var left = false, right = false, up = false, down = false;
-var tf;
-var fps = 60;
-var time = new Date().getTime();
-var rot;
 
 function Start()
 {
     stage = new Stage("c");
-    
-    // background
-    var s = new Sprite();
-    stage.addChild(s);
     
     // load image details
     /* you must do this for every image if you want to know thier
